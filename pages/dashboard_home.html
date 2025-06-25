@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau de Bord | EstimMa - Estimation Immobilière IA</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Festimma5821back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-soft sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="dashboard_home.html" class="flex items-center">
+                        <svg class="h-8 w-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L3 14v16h8v-8h10v8h8V14L16 2zm0 4.83L24 14v12h-4v-8H12v8H8V14l8-7.17z"/>
+                        </svg>
+                        <span class="ml-2 text-xl font-heading font-bold text-text-primary">EstimMa</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="dashboard_home.html" class="text-primary font-medium border-b-2 border-primary pb-1">
+                        Tableau de bord
+                    </a>
+                    <a href="ai_property_valuation_form.html" class="text-text-secondary hover:text-primary transition-colors duration-200">
+                        Estimation IA
+                    </a>
+                    <a href="property_listings_management.html" class="text-text-secondary hover:text-primary transition-colors duration-200">
+                        Mes Annonces
+                    </a>
+                    <a href="market_analytics_heatmap.html" class="text-text-secondary hover:text-primary transition-colors duration-200">
+                        Marché
+                    </a>
+                    <a href="agent_profile_services.html" class="text-text-secondary hover:text-primary transition-colors duration-200">
+                        Profil
+                    </a>
+                </nav>
+
+                <!-- Right Side Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Search Icon -->
+                    <button class="p-2 text-text-secondary hover:text-primary transition-colors duration-200 min-h-[44px] min-w-[44px]">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </button>
+
+                    <!-- Notifications -->
+                    <button class="relative p-2 text-text-secondary hover:text-primary transition-colors duration-200 min-h-[44px] min-w-[44px]">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM10.07 2.82l3.93 3.93-3.93 3.93-3.93-3.93 3.93-3.93z"/>
+                        </svg>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+                    </button>
+
+                    <!-- Language Toggle -->
+                    <div class="hidden sm:flex bg-gray-100 rounded-lg p-1">
+                        <button id="lang-fr" class="px-3 py-1 text-sm font-medium rounded-md bg-primary text-white transition-all duration-200">
+                            FR
+                        </button>
+                        <button id="lang-ar" class="px-3 py-1 text-sm font-medium rounded-md text-gray-600 hover:text-primary transition-all duration-200">
+                            العربية
+                        </button>
+                    </div>
+
+                    <!-- User Avatar -->
+                    <div class="relative">
+                        <button class="flex items-center space-x-2 p-1 rounded-full hover:bg-gray-100 transition-colors duration-200 min-h-[44px]">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile" class="w-8 h-8 rounded-full object-cover" loading="lazy" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;" />
+                            <span class="hidden sm:block text-sm font-medium text-text-primary">Mohamed A.</span>
+                        </button>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 text-text-secondary hover:text-primary transition-colors duration-200 min-h-[44px] min-w-[44px]">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-surface border-t border-gray-200">
+            <div class="px-4 py-2 space-y-1">
+                <a href="dashboard_home.html" class="block px-3 py-2 text-primary font-medium bg-primary-50 rounded-md">
+                    Tableau de bord
+                </a>
+                <a href="ai_property_valuation_form.html" class="block px-3 py-2 text-text-secondary hover:text-primary hover:bg-gray-50 rounded-md transition-colors duration-200">
+                    Estimation IA
+                </a>
+                <a href="property_listings_management.html" class="block px-3 py-2 text-text-secondary hover:text-primary hover:bg-gray-50 rounded-md transition-colors duration-200">
+                    Mes Annonces
+                </a>
+                <a href="market_analytics_heatmap.html" class="block px-3 py-2 text-text-secondary hover:text-primary hover:bg-gray-50 rounded-md transition-colors duration-200">
+                    Marché
+                </a>
+                <a href="agent_profile_services.html" class="block px-3 py-2 text-text-secondary hover:text-primary hover:bg-gray-50 rounded-md transition-colors duration-200">
+                    Profil
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <!-- Hero Section -->
+        <section class="mb-8">
+            <div class="bg-gradient-to-r from-primary-50 to-accent-50 rounded-lg p-6 sm:p-8 relative overflow-hidden">
+                <!-- Moroccan Pattern Background -->
+                <div class="absolute inset-0 opacity-5">
+                    <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
+                        <pattern id="moroccan-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M10 0L20 10L10 20L0 10Z" fill="currentColor" class="text-primary"/>
+                        </pattern>
+                        <rect width="100" height="100" fill="url(#moroccan-pattern)"/>
+                    </svg>
+                </div>
+
+                <div class="relative z-10">
+                    <div class="flex flex-col lg:flex-row items-center justify-between">
+                        <div class="flex-1 mb-6 lg:mb-0">
+                            <h1 class="text-2xl sm:text-3xl font-heading font-bold text-text-primary mb-2">
+                                Bienvenue, Mohamed !
+                            </h1>
+                            <p class="text-text-secondary mb-6">
+                                Gérez vos biens immobiliers et obtenez des estimations IA précises
+                            </p>
+                            <a href="ai_property_valuation_form.html" class="btn-primary inline-flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                </svg>
+                                Estimez mon bien
+                            </a>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-2 gap-4 lg:gap-6">
+                            <div class="text-center">
+                                <div class="text-2xl font-heading font-bold text-primary">1,234</div>
+                                <div class="text-sm text-text-secondary">Estimations ce mois</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-heading font-bold text-secondary">+12%</div>
+                                <div class="text-sm text-text-secondary">Prix Casablanca</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Recent Valuations Card -->
+            <div class="card">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-heading font-semibold text-text-primary">Estimations Récentes</h3>
+                    <a href="ai_property_valuation_form.html" class="text-primary hover:text-primary-600 text-sm font-medium transition-colors duration-200">
+                        Voir tout
+                    </a>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Appartement Casablanca" class="w-12 h-12 rounded-lg object-cover" loading="lazy" onerror="this.src='https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;" />
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-text-primary">Appartement 3P</p>
+                            <p class="text-xs text-text-secondary">Maarif, Casablanca</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-primary">1 250 000 DH</p>
+                            <p class="text-xs text-text-secondary">Il y a 2h</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Villa Rabat" class="w-12 h-12 rounded-lg object-cover" loading="lazy" onerror="this.src='https://images.pixabay.com/photo/2016/06/24/10/47/house-1477041_1280.jpg'; this.onerror=null;" />
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-text-primary">Villa 5P</p>
+                            <p class="text-xs text-text-secondary">Souissi, Rabat</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-primary">3 800 000 DH</p>
+                            <p class="text-xs text-text-secondary">Il y a 1j</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Riad Marrakech" class="w-12 h-12 rounded-lg object-cover" loading="lazy" onerror="this.src='https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;" />
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-text-primary">Riad traditionnel</p>
+                            <p class="text-xs text-text-secondary">Médina, Marrakech</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-primary">2 100 000 DH</p>
+                            <p class="text-xs text-text-secondary">Il y a 2j</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Listings Card -->
+            <div class="card">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-heading font-semibold text-text-primary">Mes Annonces</h3>
+                    <a href="property_listings_management.html" class="text-primary hover:text-primary-600 text-sm font-medium transition-colors duration-200">
+                        Voir tout
+                    </a>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-3 bg-success-50 rounded-lg">
+                        <div>
+                            <p class="text-sm font-medium text-text-primary">Appartement Anfa</p>
+                            <p class="text-xs text-text-secondary">Publié il y a 3 jours</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-success">Actif</p>
+                            <p class="text-xs text-text-secondary">247 vues</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-warning-50 rounded-lg">
+                        <div>
+                            <p class="text-sm font-medium text-text-primary">Villa Hay Riad</p>
+                            <p class="text-xs text-text-secondary">Publié il y a 1 semaine</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-warning">En attente</p>
+                            <p class="text-xs text-text-secondary">89 vues</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div>
+                            <p class="text-sm font-medium text-text-primary">Studio Gueliz</p>
+                            <p class="text-xs text-text-secondary">Publié il y a 2 semaines</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-text-secondary">Brouillon</p>
+                            <p class="text-xs text-text-secondary">0 vues</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Insights Card -->
+            <div class="card">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-heading font-semibold text-text-primary">Tendances Marché</h3>
+                    <a href="market_analytics_heatmap.html" class="text-primary hover:text-primary-600 text-sm font-medium transition-colors duration-200">
+                        Voir tout
+                    </a>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-success rounded-full"></div>
+                            <span class="text-sm font-medium text-text-primary">Casablanca</span>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-success">+8.5%</p>
+                            <p class="text-xs text-text-secondary">ce mois</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-primary rounded-full"></div>
+                            <span class="text-sm font-medium text-text-primary">Rabat</span>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-primary">+5.2%</p>
+                            <p class="text-xs text-text-secondary">ce mois</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-warning rounded-full"></div>
+                            <span class="text-sm font-medium text-text-primary">Marrakech</span>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-warning">+2.1%</p>
+                            <p class="text-xs text-text-secondary">ce mois</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-secondary rounded-full"></div>
+                            <span class="text-sm font-medium text-text-primary">Tanger</span>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-secondary">+3.7%</p>
+                            <p class="text-xs text-text-secondary">ce mois</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions Panel -->
+        <section class="mb-8">
+            <h2 class="text-xl font-heading font-semibold text-text-primary mb-4">Actions Rapides</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="ai_property_valuation_form.html" class="card hover:shadow-elevated transition-shadow duration-200 text-center">
+                    <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium text-text-primary mb-1">Télécharger Photos</h3>
+                    <p class="text-sm text-text-secondary">Ajoutez des photos de propriété</p>
+                </a>
+
+                <a href="property_listings_management.html" class="card hover:shadow-elevated transition-shadow duration-200 text-center">
+                    <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium text-text-primary mb-1">Nouvelle Annonce</h3>
+                    <p class="text-sm text-text-secondary">Créer une nouvelle annonce</p>
+                </a>
+
+                <button class="card hover:shadow-elevated transition-shadow duration-200 text-center" onclick="startVoiceSearch()">
+                    <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-accent-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium text-text-primary mb-1">Recherche Vocale</h3>
+                    <p class="text-sm text-text-secondary">Rechercher par la voix</p>
+                </button>
+
+                <a href="market_analytics_heatmap.html" class="card hover:shadow-elevated transition-shadow duration-200 text-center">
+                    <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium text-text-primary mb-1">Analyses Marché</h3>
+                    <p class="text-sm text-text-secondary">Voir les tendances</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Personalized Recommendations -->
+        <section class="mb-8">
+            <h2 class="text-xl font-heading font-semibold text-text-primary mb-4">Recommandations Personnalisées</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- For Agents -->
+                <div class="card bg-gradient-to-br from-primary-50 to-primary-100">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-text-primary mb-2">Génération de Leads</h3>
+                            <p class="text-sm text-text-secondary mb-3">
+                                3 nouveaux prospects intéressés par vos propriétés à Casablanca
+                            </p>
+                            <a href="agent_profile_services.html" class="text-primary hover:text-primary-600 text-sm font-medium transition-colors duration-200">
+                                Voir les prospects →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Comparison -->
+                <div class="card bg-gradient-to-br from-secondary-50 to-secondary-100">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-text-primary mb-2">Comparaison Marché</h3>
+                            <p class="text-sm text-text-secondary mb-3">
+                                Vos propriétés sont 12% au-dessus du prix moyen du quartier
+                            </p>
+                            <a href="market_analytics_heatmap.html" class="text-secondary hover:text-secondary-600 text-sm font-medium transition-colors duration-200">
+                                Analyser les prix →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- WhatsApp Integration Widget -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <a href="https://wa.me/212600000000?text=Bonjour,%20j'aimerais%20avoir%20des%20informations%20sur%20vos%20services%20d'estimation%20immobilière" target="_blank" class="flex items-center justify-center w-14 h-14 bg-green-600 text-white rounded-full shadow-elevated hover:bg-green-700 transition-all duration-200 hover:scale-110">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Language toggle functionality
+        const langFr = document.getElementById('lang-fr');
+        const langAr = document.getElementById('lang-ar');
+
+        langFr.addEventListener('click', () => {
+            langFr.classList.add('bg-primary', 'text-white');
+            langFr.classList.remove('text-gray-600');
+            langAr.classList.remove('bg-primary', 'text-white');
+            langAr.classList.add('text-gray-600');
+            document.documentElement.setAttribute('lang', 'fr');
+            document.documentElement.setAttribute('dir', 'ltr');
+        });
+
+        langAr.addEventListener('click', () => {
+            langAr.classList.add('bg-primary', 'text-white');
+            langAr.classList.remove('text-gray-600');
+            langFr.classList.remove('bg-primary', 'text-white');
+            langFr.classList.add('text-gray-600');
+            document.documentElement.setAttribute('lang', 'ar');
+            document.documentElement.setAttribute('dir', 'rtl');
+        });
+
+        // Voice search functionality
+        function startVoiceSearch() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recognition = new SpeechRecognition();
+                
+                recognition.lang = 'fr-FR';
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                
+                recognition.onstart = function() {
+                    console.log('Voice search started');
+                    // You could show a visual indicator here
+                };
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    console.log('Voice search result:', transcript);
+                    // Process the voice search result
+                    alert(`Recherche vocale: "${transcript}"`);
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('Voice search error:', event.error);
+                    alert('Erreur de reconnaissance vocale. Veuillez réessayer.');
+                };
+                
+                recognition.start();
+            } else {
+                alert('La reconnaissance vocale n\'est pas supportée par votre navigateur.');
+            }
+        }
+
+        // Simulate real-time updates
+        function updateStats() {
+            // This would typically fetch real data from an API
+            const statsElements = document.querySelectorAll('[data-stat]');
+            statsElements.forEach(element => {
+                // Simulate minor fluctuations in stats
+                const currentValue = parseInt(element.textContent.replace(/[^\d]/g, ''));
+                const variation = Math.floor(Math.random() * 10) - 5; // -5 to +5
+                const newValue = Math.max(0, currentValue + variation);
+                
+                if (element.textContent.includes('%')) {
+                    element.textContent = `+${(newValue / 100).toFixed(1)}%`;
+                } else {
+                    element.textContent = newValue.toLocaleString('fr-FR');
+                }
+            });
+        }
+
+        // Update stats every 30 seconds
+        setInterval(updateStats, 30000);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading states for navigation
+        document.querySelectorAll('a[href$=".html"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Add loading state
+                this.style.opacity = '0.7';
+                this.style.pointerEvents = 'none';
+                
+                // Reset after a short delay (in case navigation fails)
+                setTimeout(() => {
+                    this.style.opacity = '1';
+                    this.style.pointerEvents = 'auto';
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>

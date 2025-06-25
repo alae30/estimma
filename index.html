@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moroccan Real Estate Platform</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background-color: #FAFAF9;
+            color: #1A1A1A;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            text-align: center;
+            background: #FFFFFF;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            margin: 2rem;
+        }
+        
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #C4622D;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.125rem;
+            color: #6B7280;
+            margin-bottom: 2rem;
+        }
+        
+        .page-list {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .page-link {
+            display: block;
+            padding: 1rem 1.5rem;
+            background: #F0F4FA;
+            color: #2B5797;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 200ms ease-out;
+            border: 2px solid transparent;
+        }
+        
+        .page-link:hover {
+            background: #2B5797;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(43, 87, 151, 0.3);
+        }
+        
+        .page-link:focus {
+            outline: none;
+            border-color: #C4622D;
+            box-shadow: 0 0 0 2px rgba(196, 98, 45, 0.5);
+        }
+        
+        .loading {
+            display: none;
+            color: #6B7280;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .page-link {
+                transition: none;
+            }
+            .page-link:hover {
+                transform: none;
+            }
+        }
+    </style>
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Festimma5821back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🏠 PropTech Morocco</div>
+        <div class="subtitle">Modern Real Estate Technology Platform</div>
+        
+        <div class="page-list">
+            <a href="pages/authentication_login_register.html" class="page-link">
+                🔐 Authentication & Login
+            </a>
+            <a href="pages/dashboard_home.html" class="page-link">
+                📊 Dashboard Home
+            </a>
+            <a href="pages/ai_property_valuation_form.html" class="page-link">
+                🤖 AI Property Valuation
+            </a>
+            <a href="pages/property_listings_management.html" class="page-link">
+                🏘️ Property Listings Management
+            </a>
+            <a href="pages/market_analytics_heatmap.html" class="page-link">
+                📈 Market Analytics & Heatmap
+            </a>
+            <a href="pages/agent_profile_services.html" class="page-link">
+                👤 Agent Profile & Services
+            </a>
+        </div>
+        
+        <div class="loading" id="loading">Loading page...</div>
+    </div>
+
+    <script>
+        // Add click handlers to show loading state
+        document.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.getElementById('loading').style.display = 'block';
+            });
+        });
+        
+        // Auto-redirect to dashboard after 3 seconds if no interaction
+        setTimeout(() => {
+            if (document.visibilityState === 'visible') {
+                window.location.href = 'pages/dashboard_home.html';
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
